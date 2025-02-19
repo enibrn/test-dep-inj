@@ -1,17 +1,9 @@
-import { defineNuxtPlugin } from '#app';
-import { useAddOperation } from '~/operations/useAddOperation';
-import { useMulOperation } from '~/operations/useMulOperation';
+
 import type { IUseOperation } from '~/operations/IUseOperation';
+import { resolveOperation } from '~/operations/resolver';
 
 export default defineNuxtPlugin((nuxtApp) => {
   const config = useRuntimeConfig();
-  let operation: IUseOperation;
-
-  if (config.public.operation === 'useAddOperation') {
-    operation = useAddOperation();
-  } else {
-    operation = useMulOperation();
-  }
-
+  const operation: IUseOperation = resolveOperation(config.public.operation);
   nuxtApp.provide('operation', operation);
 });

@@ -1,4 +1,4 @@
-import type { IUseOperation } from './IUseOperation';
+import type { IUseOperation } from '../IUseOperation';
 
 export function useAddOperation(): IUseOperation {
   const perform = (a: number, b: number): number => {

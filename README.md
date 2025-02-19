@@ -1,75 +1,38 @@
-# Nuxt Minimal Starter
+# Nuxt 3 Dependency Injection Test
 
-Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+Questo progetto è stato creato per testare l'implementazione della dependency injection in un'applicazione Nuxt 3. Utilizza plugin per iniettare operazioni matematiche che possono essere utilizzate nei componenti Vue.
 
-## Setup
+## Struttura del Progetto
 
-Make sure to install dependencies:
+- **plugins/operation.ts**: Inietta un'operazione matematica basata sulla configurazione runtime.
+- **plugins/antiOp.ts**: Inietta un'operazione inversa basata sulla configurazione runtime.
+- **components/operation-calculator.vue**: Componente per eseguire calcoli con l'operazione iniettata.
+- **components/antiOp-calculator.vue**: Componente per eseguire calcoli con l'operazione inversa iniettata.
+- **pages/index.vue**: Pagina principale che utilizza i componenti di calcolo.
 
-```bash
-# npm
-npm install
+## Configurazione
 
-# pnpm
-pnpm install
+La configurazione delle operazioni viene gestita tramite il file `nuxt.config.ts`:
 
-# yarn
-yarn install
-
-# bun
-bun install
+```typescript
+export default defineNuxtConfig({
+  // ...existing code...
+  runtimeConfig: {
+    public: {
+      operation: 'add', // Tipo di operazione (es. 'add', 'mul')
+      antiOp: 'mul', // Tipo di operazione inversa (es. 'add', 'mul')
+    },
+  },
+  plugins: ['~/plugins/operation.ts', '~/plugins/antiOp.ts'],
+})
 ```
 
-## Development Server
+## Come Eseguire
 
-Start the development server on `http://localhost:3000`:
+1. Clona il repository.
+2. Installa le dipendenze con `npm install`.
+3. Avvia il server di sviluppo con `npm run dev`.
 
-```bash
-# npm
-npm run dev
+## Scopo
 
-# pnpm
-pnpm dev
-
-# yarn
-yarn dev
-
-# bun
-bun run dev
-```
-
-## Production
-
-Build the application for production:
-
-```bash
-# npm
-npm run build
-
-# pnpm
-pnpm build
-
-# yarn
-yarn build
-
-# bun
-bun run build
-```
-
-Locally preview production build:
-
-```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+L'obiettivo di questo progetto è dimostrare come utilizzare la dependency injection in Nuxt 3 per gestire operazioni matematiche in modo modulare e configurabile.
