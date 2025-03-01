@@ -1,5 +1,5 @@
 <template>
-  <UForm class="flex gap-4">
+  <UForm :state="{}" class="flex gap-4">
     <UCard>
       <template #header>
         <h1>Operation of type {{ opType }}</h1>
@@ -24,7 +24,7 @@
   </UForm>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { ref } from 'vue';
 const a = ref(0);
 const b = ref(0);
